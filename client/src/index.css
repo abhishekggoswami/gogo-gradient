@@ -365,12 +365,11 @@
   background: white;
   padding: 15px 20px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   animation: topbar-slide-in 0.8s ease-out forwards;
   z-index: 10;
-  border-bottom: 1px solid rgba(42, 64, 26, 0.1);
 }
 
 /* Animated gradient border for topbar */
@@ -382,10 +381,10 @@
   right: 0;
   height: 3px;
   background: linear-gradient(90deg, 
-    #2a401a, #4c7c1b, #74b72e, #d4af37, 
-    #eec550, #d4af37, #74b72e, #4c7c1b, #2a401a);
+    #2a401a, #4c7c1b, #74b72e, #a9d18e, 
+    #74b72e, #4c7c1b, #2a401a);
   background-size: 200% 100%;
-  animation: border-shimmer 4s linear infinite;
+  animation: border-shimmer 3s linear infinite;
 }
 
 /* Logo animation */
@@ -400,28 +399,12 @@
 
 /* Topbar heading animation */
 .topbar h1 {
-  background: linear-gradient(90deg, #d4af37, #eec550, #d4af37);
+  background: linear-gradient(90deg, #2a401a, #4c7c1b, #74b72e);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   animation: text-glow 3s ease-in-out infinite;
   transition: letter-spacing 0.3s ease;
-  font-size: 24px;
-  line-height: 1.2;
-  display: flex;
-  flex-direction: column;
-}
-
-.topbar h1 .tagline {
-  font-size: 16px;
-  color: #2a401a;
-  background: none;
-  -webkit-background-clip: initial;
-  background-clip: initial;
-  letter-spacing: 1px;
-  font-weight: 600;
-  text-transform: uppercase;
-  margin-top: 2px;
 }
 
 .topbar h1:hover {

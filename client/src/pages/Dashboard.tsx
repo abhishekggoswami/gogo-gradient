@@ -95,7 +95,7 @@ export default function Dashboard() {
       {/* Topbar */}
       <div className="topbar">
         <img src="/img/vintage-logo.png" alt="Vintage Group Logo" className="logo" />
-        <h1>Vintage Group <span className="tagline">Absolutely Pure</span></h1>
+        <h1>Vintage Group</h1>
       </div>
 
       <h1 className="welcome-heading">Welcome to Vintage Group Real Estate Dashboard Portal</h1>
