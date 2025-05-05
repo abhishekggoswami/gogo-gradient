@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Custom animation keyframes for gradient movement */
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Fade-in animation for data tables */
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Applied styles for data-table containers with animated green gradient */
+.data-table {
+  position: relative;
+  background: white;
+  margin-top: 10px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.data-table::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background: linear-gradient(-45deg, #2a401a, #4c7c1b, #74b72e, #a9d18e);
+  background-size: 400% 400%;
+  animation: gradient-animation 15s ease infinite;
+  opacity: 0.9;
+}
+
+.data-table.active {
+  display: block;
+  animation: fadeSlideUp 0.4s ease-out;
+}
+
+/* Ensure text remains readable with the animated background */
+.data-table h3 {
+  position: relative;
+  z-index: 2;
+  color: white;
+  margin-bottom: 10px;
+}
+
+/* Add a semi-transparent overlay to improve readability */
+.data-table table {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.data-table table th,
+.data-table table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.data-table table tr:nth-child(even) {
+  background-color: rgba(249, 250, 251, 0.85);
+}
+
+.data-table table tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+/* Card styles */
+.card {
+  flex: 1 1 200px;
+  color: white;
+  padding: 20px 10px;
+  text-align: center;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  background-color: #2a401a;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card.active {
+  outline: 3px solid black;
+  transform: scale(1);
+}
+
+.card .count {
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+/* Topbar styles */
+.topbar {
+  background: white;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  height: 40px;
+  object-fit: contain;
+}
+
+.welcome-heading {
+  text-align: center;
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.section {
+  padding: 10px 15px;
+}
+
+.section h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.counters {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 1024px) {
+  .card {
+    font-size: 13px;
+    padding: 18px 8px;
+  }
+  .card .count {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logo {
+    height: 35px;
+  }
+
+  .welcome-heading {
+    font-size: 18px;
+  }
+
+  .section h2 {
+    font-size: 16px;
+  }
+
+  .counters {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card {
+    flex: 1 1 100%;
+    font-size: 13px;
+  }
+
+  .card .count {
+    font-size: 17px;
+  }
+
+  table, th, td {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .topbar {
+    padding: 8px 10px;
+  }
+
+  .card {
+    font-size: 12px;
+    padding: 15px 8px;
+  }
+
+  .card .count {
+    font-size: 16px;
+  }
+
+  .welcome-heading {
+    font-size: 16px;
+  }
+
+  table, th, td {
+    font-size: 13px;
+  }
+}
