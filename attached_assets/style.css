@@ -1,0 +1,294 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f3f4f6;
+  color: #111;
+}
+
+
+
+.topbar {
+  background: white;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  height: 40px;
+  object-fit: contain;
+}
+
+.welcome-heading {
+  text-align: center;
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.section {
+  padding: 10px 15px;
+}
+
+.section h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.counters {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1 1 200px;
+  color: white;
+  padding: 20px 10px;
+  text-align: center;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card .count {
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+/* .card.downloads {
+  background: linear-gradient(135deg, #f97316, #fb923c);
+}
+
+.card.leads {
+  background: linear-gradient(135deg, #10b981, #34d399);
+}
+
+.card.suspects {
+  background: linear-gradient(135deg, #ec4899, #f472b6);
+}
+
+.card.prosuspects {
+  background: linear-gradient(135deg, #6366f1, #818cf8);
+} */
+
+
+
+.card {
+  background-color: #2a401a;
+}
+
+.card.active {
+  outline: 3px solid black; 
+  transform: scale(1);
+}
+
+
+.data-table {
+  background: white;
+  margin-top: 10px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: none;
+}
+
+.data-table.active {
+  display: block;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Animations */
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* modal section */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal-content {
+  background: white;
+  margin: 10% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: fadeSlideUp 0.4s ease-out;
+}
+
+.modal-content h3 {
+  margin-bottom: 10px;
+}
+
+.modal-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.modal-content table,
+.modal-content th,
+.modal-content td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.modal-content button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* media queries later need to implement this section */
+@media (max-width: 1024px) {
+  .card {
+    font-size: 13px;
+    padding: 18px 8px;
+  }
+  .card .count {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logo {
+    height: 35px;
+  }
+
+  .welcome-heading {
+    font-size: 18px;
+  }
+
+  .section h2 {
+    font-size: 16px;
+  }
+
+  .counters {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card {
+    flex: 1 1 100%;
+    font-size: 13px;
+  }
+
+  .card .count {
+    font-size: 17px;
+  }
+
+  .modal-content {
+    width: 90%;
+    margin: 20% auto;
+  }
+
+  table, th, td {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .topbar {
+    padding: 8px 10px;
+  }
+
+  .card {
+    font-size: 12px;
+    padding: 15px 8px;
+  }
+
+  .card .count {
+    font-size: 16px;
+  }
+
+  .modal-content {
+    padding: 15px;
+    width: 95%;
+  }
+
+  .modal-content button {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .welcome-heading {
+    font-size: 16px;
+  }
+
+  table, th, td {
+    font-size: 13px;
+  }
+}
