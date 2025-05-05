@@ -3,29 +3,55 @@ import { useEffect } from "react";
 export default function Dashboard() {
   // Setup counter animations and table toggling
   useEffect(() => {
-    // Real time counters
+    // Enhanced animated counters with easing effect
     const counters = document.querySelectorAll(".count");
-    counters.forEach(counter => {
-      if (counter instanceof HTMLElement) {
-        counter.innerText = "0";
-        const update = () => {
+    
+    // Delay the start of counting to allow for the entrance animations
+    setTimeout(() => {
+      counters.forEach((counter, index) => {
+        if (counter instanceof HTMLElement) {
+          counter.innerText = "0";
+          
           const parent = counter.parentElement;
           if (!parent) return;
           
           const target = +(parent.getAttribute("data-target") || "0");
-          const current = +(counter.innerText);
-          const inc = Math.ceil(target / 100);
           
-          if (current < target) {
-            counter.innerText = `${current + inc}`;
-            setTimeout(update, 30);
-          } else {
-            counter.innerText = target.toString();
-          }
-        };
-        update();
-      }
-    });
+          // Create a more dynamic timing based on the target value
+          const duration = 2000 + (index * 200); // Staggered animation starts
+          const startTime = performance.now();
+          
+          const easeOutQuart = (t: number): number => 1 - Math.pow(1 - t, 4); // Ease out quartic
+          
+          const updateCounter = (currentTime: number) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easedProgress = easeOutQuart(progress);
+            
+            const currentValue = Math.floor(easedProgress * target);
+            counter.innerText = currentValue.toString();
+            
+            // Add a class when the counter is actively changing
+            if (progress < 1) {
+              counter.classList.add("counting");
+              requestAnimationFrame(updateCounter);
+            } else {
+              counter.innerText = target.toString();
+              counter.classList.remove("counting");
+              counter.classList.add("complete");
+              
+              // Add a pulse effect when counting completes
+              setTimeout(() => {
+                counter.classList.add("pulse-complete");
+                setTimeout(() => counter.classList.remove("pulse-complete"), 500);
+              }, 100);
+            }
+          };
+          
+          requestAnimationFrame(updateCounter);
+        }
+      });
+    }, 800); // Delay to allow for card entrance animations
 
     // Card click highlight for counter
     const cards = document.querySelectorAll(".card");
